@@ -47,10 +47,6 @@ for i, el in enumerate(memory_values):
     circuit.barrier()
 
 
-optimized_circuit = transpile(circuit, optimization_level=2)
-print(optimized_circuit)
-
-print(f"Depth: {optimized_circuit.depth()} - Size: {optimized_circuit.size()}\n")
 print(circuit)
 
 print(f"Depth: {circuit.depth()} - Size: {circuit.size()}\n")
