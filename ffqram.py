@@ -94,5 +94,5 @@ plt.show()
 
     plot grafici size e depth su dataset e al variare dell'oottimization level
 
-    
+    proposition Gray Code
 """

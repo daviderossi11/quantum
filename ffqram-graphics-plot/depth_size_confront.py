@@ -65,7 +65,8 @@ def calculate_circuit_metrics_GrayCode(memory_values):
     thetas = [calculate_theta(value, max_value) for value in memory_values]
     N = len(memory_values)
     n = int(math.log2(N))
-    
+    countXGate = 0
+
     qaddr = QuantumRegister(n, 'addr')
     previous_bit = [1] * n
     qdata = QuantumRegister(1, 'data')
@@ -83,6 +84,7 @@ def calculate_circuit_metrics_GrayCode(memory_values):
         for j, bit in binary_index:
             if bit == '0' and previous_bit[j] == 1:
                 circuit.append(XGate(), [qaddr[j]])
+                countXGate+=1
             previous_bit[j] = int(bit)
         
         CRYGate = RYGate(theta).control(n)
@@ -93,14 +95,18 @@ def calculate_circuit_metrics_GrayCode(memory_values):
             for j, next_bit in binary_index:
                 if next_bit == '1' and previous_bit[j] == 0:
                     circuit.append(XGate(), [qaddr[j]])
+                    countXGate+=1
         else:
             for j, bit in binary_index:
                 if bit == '0':
                     circuit.append(XGate(), [qaddr[j]])
+                    countXGate+=1
         
         circuit.barrier()
 
-    return circuit.depth(), circuit.size()
+    print(countXGate)
+    print(circuit)
+    return circuit.depth(), circuit.size(), countXGate
 
 def calculate_circuit_metrics(memory_values):
     max_value = sum([x**2 for x in memory_values])
@@ -129,27 +135,29 @@ def calculate_circuit_metrics(memory_values):
     return circuit.depth(), circuit.size()
 
 # Generare dataset di diverse dimensioni (potenze di 2)
-dataset_sizes = [i for i in range(1, 10)]
+dataset_sizes = [i for i in range(1, 4)]
 depths_XGate = []
 sizes_XGate = []
 depths_GrayCode = []
 sizes_GrayCode = []
 depths_ctrlstate = []
 sizes_ctrlstate = []
+countXGateinGraycode=[]
 
 for size in dataset_sizes:
     memory_values = list(range(1, (2**size) + 1))
-    depth, size = calculate_circuit_metrics_XGate(memory_values)
+    """depth, size = calculate_circuit_metrics_XGate(memory_values)
     depths_XGate.append(depth)
-    sizes_XGate.append(size)
-    depth, size = calculate_circuit_metrics_GrayCode(memory_values)
+    sizes_XGate.append(size)"""
+    depth, size, count = calculate_circuit_metrics_GrayCode(memory_values)
     depths_GrayCode.append(depth)
     sizes_GrayCode.append(size)
-    depth, size = calculate_circuit_metrics(memory_values)
+    #countXGateinGraycode.append(count)
+    """depth, size = calculate_circuit_metrics(memory_values)
     depths_ctrlstate.append(depth)
-    sizes_ctrlstate.append(size)
+    sizes_ctrlstate.append(size)"""
 
-
+"""
 # Plotting
 plt.figure(figsize=(12, 6))
 
@@ -176,3 +184,5 @@ plt.title('Circuit Size vs Address Qubits')
 plt.tight_layout()
 plt.show()
 
+"""
+print(countXGateinGraycode)
