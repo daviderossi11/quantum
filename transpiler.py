@@ -1,6 +1,7 @@
 from qiskit import QuantumCircuit, QuantumRegister
 from qiskit.circuit.library import RYGate, XGate, HGate
 from qiskit.transpiler import PassManager, preset_passmanagers
+from qiskit.providers.fake_provider import GenericBackendV2
 from numpy import arcsin, sqrt, pi
 import math
 from matplotlib import pyplot as plt
@@ -49,13 +50,20 @@ for i, el in enumerate(memory_values):
 
     circuit.barrier()
 
+backend= GenericBackendV2(3)
 # Configurazione del backend e ottimizzazione
 pass_manager = preset_passmanagers.generate_preset_pass_manager(
     optimization_level=2,
+    backend=backend
 )
 
 # Traspilazione del circuito
 optimized_circuit = pass_manager.run(circuit)
 
-# Visualizzazione
+
+# Visualizzazione del circuito
+
 print(optimized_circuit)
+
+
+
