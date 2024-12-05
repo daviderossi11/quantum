@@ -108,7 +108,6 @@ def ffqram_metrics_graycode(N, memory_values=None,barrier=True,opt_lvl=2):
         for j, bit in binary_index:
             if bit == '0' and previous_bit[j] == 1:
                 circuit.append(XGate(), [qaddr[j]])
-                countXGate+=1
             previous_bit[j] = int(bit)
         
         CRYGate = RYGate(theta).control(n)
@@ -119,12 +118,10 @@ def ffqram_metrics_graycode(N, memory_values=None,barrier=True,opt_lvl=2):
             for j, next_bit in binary_index:
                 if next_bit == '1' and previous_bit[j] == 0:
                     circuit.append(XGate(), [qaddr[j]])
-                    countXGate+=1
         else:
             for j, bit in binary_index:
                 if bit == '0':
                     circuit.append(XGate(), [qaddr[j]])
-                    countXGate+=1
         if barrier:
             circuit.barrier()
 
