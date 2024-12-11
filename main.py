@@ -2,6 +2,7 @@ from lib.circuit_metrics import ffqram_metrics_graycode, ffqram_metrics_classic
 from matplotlib import pyplot as plt
 
 size = range(1,7)
+datasize = [2**i for i in size]
 
 classic_opt_size = []
 gray_opt_size = []
