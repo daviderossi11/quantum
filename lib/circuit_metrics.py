@@ -8,6 +8,19 @@ from numpy import arcsin, sqrt
 
 # Funzione per calcolare il gray code
 def gray_code(n):
+    """
+    Generate n-bit Gray code iteratively.
+    Gray code is a binary numeral system where two successive values differ in only one bit.
+    Parameters:
+    n (int): The number of bits in the Gray code.
+    Returns:
+    list of str: A list containing the n-bit Gray code sequence.
+    Examples:
+    >>> gray_code(2)
+    ['00', '01', '11', '10']
+    >>> gray_code(3)
+    ['000', '001', '011', '010', '110', '111', '101', '100']
+    """
     """Generate n-bit Gray code iteratively."""
     if n == 0:
         return ['0']
@@ -26,12 +39,45 @@ def gray_code(n):
 
 # Funzione per calcolare il valore di θ
 def calculate_theta(value, max_value):
+    """
+    Calculate the theta angle for a given value and maximum value.
+
+    This function computes the theta angle using the formula:
+    theta = 2 * arcsin(value / sqrt(max_value))
+
+    Args:
+        value (float): The value for which to calculate the theta angle.
+        max_value (float): The maximum value used for normalization.
+
+    Returns:
+        float: The calculated theta angle in radians.
+    """
     X_N = value / sqrt(max_value)
     return 2 * arcsin(X_N)
 
 
 # Funzione per calcolare la profondità e la dimensione del circuito per diverse dimensioni del dataset
 def ffqram_metrics_classic(N, memory_values=None,barrier=True,opt_lvl=2):
+    def ffqram_metrics_classic(N, memory_values=None, barrier=True, opt_lvl=2):
+        """
+        Generate a quantum circuit for FFQRAM metrics and optimize it.
+        This function creates a quantum circuit that encodes classical data into a quantum state
+        using a specific FFQRAM (Fully Flexible Quantum RAM) encoding scheme. The circuit is then
+        optimized using a preset pass manager.
+        Args:
+            N (int): The number of classical memory values to encode.
+            memory_values (list, optional): A list of classical memory values to encode. If None,
+                the function will use a default list of values from 1 to N. Defaults to None.
+            barrier (bool, optional): Whether to add barriers between different stages of the circuit.
+                Defaults to True.
+            opt_lvl (int, optional): The optimization level for the pass manager. Defaults to 2.
+        Returns:
+            tuple: A tuple containing the following metrics:
+                - int: The depth of the original circuit.
+                - int: The depth of the optimized circuit.
+                - int: The size (number of gates) of the original circuit.
+                - int: The size (number of gates) of the optimized circuit.
+        """
     if memory_values is None:
         memory_values = list(range(1, N + 1))
     
@@ -81,6 +127,23 @@ def ffqram_metrics_classic(N, memory_values=None,barrier=True,opt_lvl=2):
 
 
 def ffqram_metrics_graycode(N, memory_values=None,barrier=True,opt_lvl=2):
+    def ffqram_metrics_graycode(N, memory_values=None, barrier=True, opt_lvl=2):
+        """
+        Generate a quantum circuit using the FFQRAM (Fully Flexible Quantum Random Access Memory) 
+        approach with Gray code addressing and calculate its metrics.
+        Args:
+            N (int): The number of memory values.
+            memory_values (list, optional): A list of memory values to be encoded. Defaults to None, 
+                                            which will generate a list of values from 1 to N.
+            barrier (bool, optional): Whether to add barriers in the circuit for visualization. Defaults to True.
+            opt_lvl (int, optional): The optimization level for the pass manager. Defaults to 2.
+        Returns:
+            tuple: A tuple containing:
+                - int: Depth of the original circuit.
+                - int: Depth of the optimized circuit.
+                - int: Size of the original circuit.
+                - int: Size of the optimized circuit.
+        """
     if memory_values is None:
         memory_values = list(range(1, N + 1))
     
