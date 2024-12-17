@@ -25,17 +25,17 @@ for el in size:
 
 
 
-# plot del grafico della depth
+# plot del grafico della size
 
 
 plt.figure(figsize=(12, 6))
 
-# Tracciare Circuit Depth
+# Tracciare Circuit Size
 plt.subplot(1, 2, 1)
-plt.plot(datasize, classic_opt_size, marker='o', color='orange', linewidth=2, label='FF-QRAM Depth XGate')
-plt.plot(datasize, gray_opt_size, marker='o', color='red', linewidth=2, label='FF-QRAM Depth GrayCode')
-plt.plot(datasize, classic_opt_size_b, marker='o', color='orange', linewidth=2, linestyle='--', label='FF-QRAM Depth XGate without barrier')
-plt.plot(datasize, gray_opt_size_b, marker='o', color='red', linewidth=2, linestyle='--', label='FF-QRAM Depth GrayCode without barrier')
+plt.plot(datasize, classic_opt_size, marker='o', color='orange', linewidth=2, label='FF-QRAM Size XGate')
+plt.plot(datasize, gray_opt_size, marker='o', color='red', linewidth=2, label='FF-QRAM Size GrayCode')
+plt.plot(datasize, classic_opt_size_b, marker='o', color='orange', linewidth=2, linestyle='--', label='FF-QRAM Size XGate without barrier')
+plt.plot(datasize, gray_opt_size_b, marker='o', color='red', linewidth=2, linestyle='--', label='FF-QRAM Size GrayCode without barrier')
 plt.xlabel('Dataset size')
 plt.ylabel('Circuit size')
 plt.legend()

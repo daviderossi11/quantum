@@ -1,4 +1,20 @@
 from lib.circuit_metrics import ffqram_metrics_graycode, ffqram_metrics_classic
+"""
+This script compares the size difference between classic and graycode FF-QRAM circuits 
+with and without barriers at different optimization levels. It generates plots to visualize 
+the differences in circuit sizes for various address qubit sizes.
+Functions:
+- ffqram_metrics_graycode: Computes metrics for graycode FF-QRAM circuits.
+- ffqram_metrics_classic: Computes metrics for classic FF-QRAM circuits.
+Libraries:
+- matplotlib.pyplot: Used for plotting the results.
+Variables:
+- size: Range of address qubit sizes to evaluate.
+- optimization_levels: Range of optimization levels to evaluate.
+The script iterates over different optimization levels and address qubit sizes, computes 
+the size differences between classic and graycode FF-QRAM circuits with and without barriers, 
+and plots the results.
+"""
 from matplotlib import pyplot as plt
 
 size = range(1, 8)
