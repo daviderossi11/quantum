@@ -6,6 +6,8 @@ from numpy import arcsin, sqrt, pi
 import math
 from matplotlib import pyplot as plt
 
+k=6
+
 def gray_code(n):
     """Generate n-bit Gray code iteratively."""
     if n == 0:
@@ -27,7 +29,7 @@ def calculate_theta(value, max_value):
     return 2 * arcsin(X_N)
 
 # Valori iniziali e calcolo di θ
-memory_values = range(2**)
+memory_values = range(2**k)
 max_value = sum([x**2 for x in memory_values])
 thetas = [calculate_theta(value, max_value) for value in memory_values]
 N = len(memory_values)
