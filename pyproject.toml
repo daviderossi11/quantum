@@ -3,7 +3,7 @@ name = "quantum"
 version = "0.1.0"
 description = ""
 authors = ["davide <rossidavide1102@gmail.com>"]
-readme = "README.md"
+readme = "README.pdf"
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -18,3 +18,4 @@ ipykernel = "^6.29.5"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+package-mode = false
