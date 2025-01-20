@@ -1,0 +1,256 @@
+Opt Level 0
+Number of address qubits: 1
+Classic Size: 29
+Gray Code Size: 29
+Classic Size with Barriers: 29
+Gray Code Size with Barriers: 29
+Difference between Classic and Gray Code Size: 0
+Difference between Classic and Gray Code Size with Barriers: 0
+Number of address qubits: 2
+Classic Size: 206
+Gray Code Size: 204
+Classic Size with Barriers: 206
+Gray Code Size with Barriers: 204
+Difference between Classic and Gray Code Size: 2
+Difference between Classic and Gray Code Size with Barriers: 2
+Number of address qubits: 3
+Classic Size: 865
+Gray Code Size: 853
+Classic Size with Barriers: 865
+Gray Code Size with Barriers: 853
+Difference between Classic and Gray Code Size: 12
+Difference between Classic and Gray Code Size with Barriers: 12
+Number of address qubits: 4
+Classic Size: 1244
+Gray Code Size: 1202
+Classic Size with Barriers: 1244
+Gray Code Size with Barriers: 1202
+Difference between Classic and Gray Code Size: 42
+Difference between Classic and Gray Code Size with Barriers: 42
+Number of address qubits: 5
+Classic Size: 3535
+Gray Code Size: 3415
+Classic Size with Barriers: 3535
+Gray Code Size with Barriers: 3415
+Difference between Classic and Gray Code Size: 120
+Difference between Classic and Gray Code Size with Barriers: 120
+Number of address qubits: 6
+Classic Size: 9170
+Gray Code Size: 8860
+Classic Size with Barriers: 9170
+Gray Code Size with Barriers: 8860
+Difference between Classic and Gray Code Size: 310
+Difference between Classic and Gray Code Size with Barriers: 310
+Number of address qubits: 7
+Classic Size: 34325
+Gray Code Size: 33569
+Classic Size with Barriers: 34325
+Gray Code Size with Barriers: 33569
+Difference between Classic and Gray Code Size: 756
+Difference between Classic and Gray Code Size with Barriers: 756
+Number of address qubits: 8
+Classic Size: 101656
+Gray Code Size: 99878
+Classic Size with Barriers: 101656
+Gray Code Size with Barriers: 99878
+Difference between Classic and Gray Code Size: 1778
+Difference between Classic and Gray Code Size with Barriers: 1778
+Number of address qubits: 9
+Classic Size: 236571
+Gray Code Size: 232491
+Classic Size with Barriers: 236571
+Gray Code Size with Barriers: 232491
+Difference between Classic and Gray Code Size: 4080
+Difference between Classic and Gray Code Size with Barriers: 4080
+Opt Level 1
+Number of address qubits: 1
+Classic Size: 24
+Gray Code Size: 24
+Classic Size with Barriers: 25
+Gray Code Size with Barriers: 25
+Difference between Classic and Gray Code Size: 0
+Difference between Classic and Gray Code Size with Barriers: 0
+Number of address qubits: 2
+Classic Size: 140
+Gray Code Size: 140
+Classic Size with Barriers: 150
+Gray Code Size with Barriers: 148
+Difference between Classic and Gray Code Size: 0
+Difference between Classic and Gray Code Size with Barriers: 2
+Number of address qubits: 3
+Classic Size: 628
+Gray Code Size: 626
+Classic Size with Barriers: 641
+Gray Code Size with Barriers: 629
+Difference between Classic and Gray Code Size: 2
+Difference between Classic and Gray Code Size with Barriers: 12
+Number of address qubits: 4
+Classic Size: 1065
+Gray Code Size: 1057
+Classic Size with Barriers: 1148
+Gray Code Size with Barriers: 1106
+Difference between Classic and Gray Code Size: 8
+Difference between Classic and Gray Code Size with Barriers: 42
+Number of address qubits: 5
+Classic Size: 3207
+Gray Code Size: 3185
+Classic Size with Barriers: 3375
+Gray Code Size with Barriers: 3255
+Difference between Classic and Gray Code Size: 22
+Difference between Classic and Gray Code Size with Barriers: 120
+Number of address qubits: 6
+Classic Size: 8326
+Gray Code Size: 8274
+Classic Size with Barriers: 8722
+Gray Code Size with Barriers: 8412
+Difference between Classic and Gray Code Size: 52
+Difference between Classic and Gray Code Size with Barriers: 310
+Number of address qubits: 7
+Classic Size: 27662
+Gray Code Size: 27548
+Classic Size with Barriers: 28565
+Gray Code Size with Barriers: 27809
+Difference between Classic and Gray Code Size: 114
+Difference between Classic and Gray Code Size with Barriers: 756
+Number of address qubits: 8
+Classic Size: 77317
+Gray Code Size: 77083
+Classic Size with Barriers: 79514
+Gray Code Size with Barriers: 77859
+Difference between Classic and Gray Code Size: 234
+Difference between Classic and Gray Code Size with Barriers: 1655
+Number of address qubits: 9
+Classic Size: 179193
+Gray Code Size: 178713
+Classic Size with Barriers: 184091
+Gray Code Size with Barriers: 180258
+Difference between Classic and Gray Code Size: 480
+Difference between Classic and Gray Code Size with Barriers: 3833
+Opt Level 2
+Number of address qubits: 1
+Classic Size: 15
+Gray Code Size: 15
+Classic Size with Barriers: 25
+Gray Code Size with Barriers: 25
+Difference between Classic and Gray Code Size: 0
+Difference between Classic and Gray Code Size with Barriers: 0
+Number of address qubits: 2
+Classic Size: 132
+Gray Code Size: 132
+Classic Size with Barriers: 146
+Gray Code Size with Barriers: 144
+Difference between Classic and Gray Code Size: 0
+Difference between Classic and Gray Code Size with Barriers: 2
+Number of address qubits: 3
+Classic Size: 628
+Gray Code Size: 626
+Classic Size with Barriers: 641
+Gray Code Size with Barriers: 629
+Difference between Classic and Gray Code Size: 2
+Difference between Classic and Gray Code Size with Barriers: 12
+Number of address qubits: 4
+Classic Size: 1006
+Gray Code Size: 992
+Classic Size with Barriers: 1116
+Gray Code Size with Barriers: 1074
+Difference between Classic and Gray Code Size: 14
+Difference between Classic and Gray Code Size with Barriers: 42
+Number of address qubits: 5
+Classic Size: 3094
+Gray Code Size: 3058
+Classic Size with Barriers: 3311
+Gray Code Size with Barriers: 3191
+Difference between Classic and Gray Code Size: 36
+Difference between Classic and Gray Code Size with Barriers: 120
+Number of address qubits: 6
+Classic Size: 8087
+Gray Code Size: 8021
+Classic Size with Barriers: 8594
+Gray Code Size with Barriers: 8284
+Difference between Classic and Gray Code Size: 66
+Difference between Classic and Gray Code Size with Barriers: 310
+Number of address qubits: 7
+Classic Size: 26156
+Gray Code Size: 26027
+Classic Size with Barriers: 27285
+Gray Code Size with Barriers: 26529
+Difference between Classic and Gray Code Size: 129
+Difference between Classic and Gray Code Size with Barriers: 756
+Number of address qubits: 8
+Classic Size: 71529
+Gray Code Size: 70992
+Classic Size with Barriers: 74650
+Gray Code Size with Barriers: 72995
+Difference between Classic and Gray Code Size: 537
+Difference between Classic and Gray Code Size with Barriers: 1655
+Number of address qubits: 9
+Classic Size: 165828
+Gray Code Size: 164610
+Classic Size with Barriers: 172827
+Gray Code Size with Barriers: 168994
+Difference between Classic and Gray Code Size: 1218
+Difference between Classic and Gray Code Size with Barriers: 3833
+Opt Level 3
+Number of address qubits: 1
+Classic Size: 15
+Gray Code Size: 15
+Classic Size with Barriers: 25
+Gray Code Size with Barriers: 25
+Difference between Classic and Gray Code Size: 0
+Difference between Classic and Gray Code Size with Barriers: 0
+Number of address qubits: 2
+Classic Size: 132
+Gray Code Size: 132
+Classic Size with Barriers: 146
+Gray Code Size with Barriers: 144
+Difference between Classic and Gray Code Size: 0
+Difference between Classic and Gray Code Size with Barriers: 2
+Number of address qubits: 3
+Classic Size: 628
+Gray Code Size: 626
+Classic Size with Barriers: 641
+Gray Code Size with Barriers: 629
+Difference between Classic and Gray Code Size: 2
+Difference between Classic and Gray Code Size with Barriers: 12
+Number of address qubits: 4
+Classic Size: 1006
+Gray Code Size: 992
+Classic Size with Barriers: 1116
+Gray Code Size with Barriers: 1074
+Difference between Classic and Gray Code Size: 14
+Difference between Classic and Gray Code Size with Barriers: 42
+Number of address qubits: 5
+Classic Size: 3094
+Gray Code Size: 3058
+Classic Size with Barriers: 3311
+Gray Code Size with Barriers: 3191
+Difference between Classic and Gray Code Size: 36
+Difference between Classic and Gray Code Size with Barriers: 120
+Number of address qubits: 6
+Classic Size: 8087
+Gray Code Size: 8021
+Classic Size with Barriers: 8594
+Gray Code Size with Barriers: 8284
+Difference between Classic and Gray Code Size: 66
+Difference between Classic and Gray Code Size with Barriers: 310
+Number of address qubits: 7
+Classic Size: 26156
+Gray Code Size: 26027
+Classic Size with Barriers: 27285
+Gray Code Size with Barriers: 26529
+Difference between Classic and Gray Code Size: 129
+Difference between Classic and Gray Code Size with Barriers: 756
+Number of address qubits: 8
+Classic Size: 71529
+Gray Code Size: 70992
+Classic Size with Barriers: 74650
+Gray Code Size with Barriers: 72995
+Difference between Classic and Gray Code Size: 537
+Difference between Classic and Gray Code Size with Barriers: 1655
+Number of address qubits: 9
+Classic Size: 165828
+Gray Code Size: 164610
+Classic Size with Barriers: 172827
+Gray Code Size with Barriers: 168994
+Difference between Classic and Gray Code Size: 1218
+Difference between Classic and Gray Code Size with Barriers: 3833

@@ -57,33 +57,33 @@ def calculate_theta(value, max_value):
 
 
 # Funzione per calcolare la profondità e la dimensione del circuito per diverse dimensioni del dataset
-def ffqram_metrics_classic(N, memory_values=None,barrier=True,opt_lvl=2):
-    def ffqram_metrics_classic(N, memory_values=None, barrier=True, opt_lvl=2):
-        """
-        Generate a quantum circuit for FFQRAM metrics and optimize it.
-        This function creates a quantum circuit that encodes classical data into a quantum state
-        using a specific FFQRAM (Fully Flexible Quantum RAM) encoding scheme. The circuit is then
-        optimized using a preset pass manager.
-        Args:
-            N (int): The number of classical memory values to encode.
-            memory_values (list, optional): A list of classical memory values to encode. If None,
-                the function will use a default list of values from 1 to N. Defaults to None.
-            barrier (bool, optional): Whether to add barriers between different stages of the circuit.
-                Defaults to True.
-            opt_lvl (int, optional): The optimization level for the pass manager. Defaults to 2.
-        Returns:
-            tuple: A tuple containing the following metrics:
-                - int: The depth of the original circuit.
-                - int: The depth of the optimized circuit.
-                - int: The size (number of gates) of the original circuit.
-                - int: The size (number of gates) of the optimized circuit.
-        """
+def ffqram_metrics_classic(n, memory_values=None, barrier=True, opt_lvl=2):
+    """
+    Generate a quantum circuit for FFQRAM metrics and optimize it.
+    This function creates a quantum circuit that encodes classical data into a quantum state
+    using a specific FFQRAM (Fully Flexible Quantum RAM) encoding scheme. The circuit is then
+    optimized using a preset pass manager.
+    Args:
+        n (int): The number of qubits in the address register.
+        memory_values (list, optional): A list of classical memory values to encode. If None,
+            the function will use a default list of values from 1 to N. Defaults to None.
+        barrier (bool, optional): Whether to add barriers between different stages of the circuit.
+            Defaults to True.
+        opt_lvl (int, optional): The optimization level for the pass manager. Defaults to 2.
+    Returns:
+        tuple: A tuple containing the following metrics:
+            - int: The depth of the original circuit.
+            - int: The depth of the optimized circuit.
+            - int: The size (number of gates) of the original circuit.
+            - int: The size (number of gates) of the optimized circuit.
+    """
+
+    N = 2**n
+
     if memory_values is None:
         memory_values = list(range(1, N + 1))
     
     max_value = sum([x**2 for x in memory_values])
-    thetas = [calculate_theta(value, max_value) for value in memory_values]
-    n = int(log2(N))
     
     qaddr = QuantumRegister(n, 'addr')
     qdata = QuantumRegister(1, 'data')
@@ -118,40 +118,36 @@ def ffqram_metrics_classic(N, memory_values=None,barrier=True,opt_lvl=2):
     )
 
     optimized_circuit = pass_manager.run(circuit)
-
-
     
-    
-    return circuit.depth(), optimized_circuit.depth(), circuit.size(), optimized_circuit.size()
+    return circuit.depth(), optimized_circuit.depth(), circuit.size(), optimized_circuit.size(), circuit.count_ops(), optimized_circuit.count_ops()
 
 
 
-def ffqram_metrics_graycode(N, memory_values=None,barrier=True,opt_lvl=2):
-    def ffqram_metrics_graycode(N, memory_values=None, barrier=True, opt_lvl=2):
-        """
-        Generate a quantum circuit using the FFQRAM (Fully Flexible Quantum Random Access Memory) 
-        approach with Gray code addressing and calculate its metrics.
-        Args:
-            N (int): The number of memory values.
-            memory_values (list, optional): A list of memory values to be encoded. Defaults to None, 
-                                            which will generate a list of values from 1 to N.
-            barrier (bool, optional): Whether to add barriers in the circuit for visualization. Defaults to True.
-            opt_lvl (int, optional): The optimization level for the pass manager. Defaults to 2.
-        Returns:
-            tuple: A tuple containing:
-                - int: Depth of the original circuit.
-                - int: Depth of the optimized circuit.
-                - int: Size of the original circuit.
-                - int: Size of the optimized circuit.
-        """
+def ffqram_metrics_graycode(n, memory_values=None, barrier=True, opt_lvl=2):
+    """
+    Generate a quantum circuit using the FFQRAM (Fully Flexible Quantum Random Access Memory) 
+    approach with Gray code addressing and calculate its metrics.
+    Args:
+        n (int): The number of qubits in the address register.
+        memory_values (list, optional): A list of memory values to be encoded. Defaults to None, 
+                                        which will generate a list of values from 1 to N.
+        barrier (bool, optional): Whether to add barriers in the circuit for visualization. Defaults to True.
+        opt_lvl (int, optional): The optimization level for the pass manager. Defaults to 2.
+    Returns:
+        tuple: A tuple containing:
+            - int: Depth of the original circuit.
+            - int: Depth of the optimized circuit.
+            - int: Size of the original circuit.
+            - int: Size of the optimized circuit.
+    """
+
+    N = 2**n
     if memory_values is None:
         memory_values = list(range(1, N + 1))
     
     max_value = sum([x**2 for x in memory_values])
-    thetas = [calculate_theta(value, max_value) for value in memory_values]
-    n = int(log2(N))
     
-    qaddr = QuantumRegister(n, 'addr') 
+    qaddr = QuantumRegister(n, 'addr')
     qdata = QuantumRegister(1, 'data')
     previous_bit = [1] * n
 
@@ -161,7 +157,6 @@ def ffqram_metrics_graycode(N, memory_values=None,barrier=True,opt_lvl=2):
         circuit.append(HGate(), [qa])
     if barrier:
         circuit.barrier()
-
 
     gray_codes = gray_code(n)
     binary_index = list(enumerate(gray_codes[0]))
@@ -195,4 +190,4 @@ def ffqram_metrics_graycode(N, memory_values=None,barrier=True,opt_lvl=2):
 
     optimized_circuit = pass_manager.run(circuit)
 
-    return circuit.depth(), optimized_circuit.depth(), circuit.size(), optimized_circuit.size()     
+    return circuit.depth(), optimized_circuit.depth(), circuit.size(), optimized_circuit.size(), circuit.count_ops(), optimized_circuit.count_ops()
