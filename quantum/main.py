@@ -1,20 +1,20 @@
-from lib.circuit_metrics import ffqram_metrics_graycode, ffqram_metrics_classic
-from matplotlib import pyplot as plt
+from lib.circuit_metrics import create_ffqram_gc_circuit
+import numpy as np
+from qiskit.quantum_info import Operator
 
-size = range(1,12)
-
-classic_opt_size = []
-gray_opt_size = []
-
-difference_size = []
-
-for el in size:
-    _, _, _, classic_opt, _, _ = ffqram_metrics_classic(el, barrier=False, opt_lvl=1)
-    _, _, _, gray_opt, _, _ = ffqram_metrics_graycode(el, barrier=False, opt_lvl=1)
+def main():
+    n = 3  # You can change this value as needed
+    array_size = 2 ** n
+    random_array = np.random.rand(array_size)
 
 
-    difference_size.append(classic_opt - gray_opt)
+    circuit = create_ffqram_gc_circuit(n, memory_values=random_array, opt_lvl=2)
 
-for i in range(len(size)):
-    print(f"Size: {size[i]}")
-    print(f"Difference: {difference_size[i]}")
+    print(Operator(circuit))
+
+
+
+
+
+if __name__ == "__main__":
+    main()

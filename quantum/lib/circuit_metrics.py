@@ -191,3 +191,65 @@ def ffqram_metrics_graycode(n, memory_values=None, barrier=True, opt_lvl=2):
     optimized_circuit = pass_manager.run(circuit)
 
     return circuit.depth(), optimized_circuit.depth(), circuit.size(), optimized_circuit.size(), circuit.count_ops(), optimized_circuit.count_ops()
+
+
+
+def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2):
+    """
+    Create a quantum circuit using the FFQRAM (Flip Flop Quantum Random Access Memory) approach
+    with Gray code addressing.
+    Args:
+        n (int): The number of qubits in the address register.
+        memory_values (list, optional): A list of memory values to be encoded. Defaults to None, 
+                                        which will generate a list of values from 1 to N.
+        opt_level (int, optional): The optimization level for the pass manager. Defaults to 2.
+    Returns:
+        QuantumCircuit: The quantum circuit implementing the FFQRAM encoding with Gray code addressing.
+    """
+
+    N = 2**n
+    if memory_values is None:
+        memory_values = list(range(1, N + 1))
+    max_value = sum([x**2 for x in memory_values])
+    
+    qaddr = QuantumRegister(n, 'addr')
+    qdata = QuantumRegister(1, 'data')
+    previous_bit = [1] * n
+
+    circuit = QuantumCircuit(qaddr, qdata)
+
+    for qa in qaddr:
+        circuit.append(HGate(), [qa])
+
+    gray_codes = gray_code(n)
+    binary_index = list(enumerate(gray_codes[0]))
+    
+    for i, el in enumerate(memory_values):
+        theta = calculate_theta(el, max_value)
+        for j, bit in binary_index:
+            if bit == '0' and previous_bit[j] == 1:
+                circuit.append(XGate(), [qaddr[j]])
+            previous_bit[j] = int(bit)
+        
+        CRYGate = RYGate(theta).control(n)
+        circuit.append(CRYGate, qaddr[:n] + [qdata[0]])
+        
+        if i < N - 1:
+            binary_index = list(enumerate(gray_codes[i + 1]))
+            for j, next_bit in binary_index:
+                if next_bit == '1' and previous_bit[j] == 0:
+                    circuit.append(XGate(), [qaddr[j]])
+        else:
+            for j, bit in binary_index:
+                if bit == '0':
+                    circuit.append(XGate(), [qaddr[j]])
+
+    pass_manager = preset_passmanagers.generate_preset_pass_manager(
+        optimization_level=opt_lvl,
+        backend=GenericBackendV2(n+1)
+    )
+
+    optimized_circuit = pass_manager.run(circuit)
+
+    return optimized_circuit
+    
