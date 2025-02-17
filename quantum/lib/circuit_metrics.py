@@ -251,5 +251,5 @@ def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2):
 
     optimized_circuit = pass_manager.run(circuit)
 
-    return optimized_circuit
+    return optimized_circuit, circuit
     
