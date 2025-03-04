@@ -1,0 +1,226 @@
+{
+  "0": {
+    "1": {
+      "avg_classic_depth": 24.0,
+      "avg_classic_size": 29.0,
+      "avg_gray_depth": 24.0,
+      "avg_gray_size": 29.0
+    },
+    "2": {
+      "avg_classic_depth": 152.0,
+      "avg_classic_size": 206.0,
+      "avg_gray_depth": 152.0,
+      "avg_gray_size": 204.0
+    },
+    "3": {
+      "avg_classic_depth": 732.0,
+      "avg_classic_size": 865.0,
+      "avg_gray_depth": 732.0,
+      "avg_gray_size": 853.0
+    },
+    "4": {
+      "avg_classic_depth": 848.0,
+      "avg_classic_size": 1244.0,
+      "avg_gray_depth": 848.0,
+      "avg_gray_size": 1202.0
+    },
+    "5": {
+      "avg_classic_depth": 2218.0,
+      "avg_classic_size": 3535.0,
+      "avg_gray_depth": 2218.0,
+      "avg_gray_size": 3415.0
+    },
+    "6": {
+      "avg_classic_depth": 5450.0,
+      "avg_classic_size": 9170.0,
+      "avg_gray_depth": 5450.0,
+      "avg_gray_size": 8860.0
+    },
+    "7": {
+      "avg_classic_depth": 29312.0,
+      "avg_classic_size": 34325.0,
+      "avg_gray_depth": 29312.0,
+      "avg_gray_size": 33569.0
+    },
+    "8": {
+      "avg_classic_depth": 71942.0,
+      "avg_classic_size": 101656.0,
+      "avg_gray_depth": 71696.0,
+      "avg_gray_size": 99878.0
+    },
+    "9": {
+      "avg_classic_depth": 183814.0,
+      "avg_classic_size": 236571.0,
+      "avg_gray_depth": 183320.0,
+      "avg_gray_size": 232491.0
+    }
+  },
+  "1": {
+    "1": {
+      "avg_classic_depth": 20.0,
+      "avg_classic_size": 24.0,
+      "avg_gray_depth": 20.0,
+      "avg_gray_size": 24.0
+    },
+    "2": {
+      "avg_classic_depth": 90.0,
+      "avg_classic_size": 140.0,
+      "avg_gray_depth": 91.0,
+      "avg_gray_size": 140.0
+    },
+    "3": {
+      "avg_classic_depth": 563.0,
+      "avg_classic_size": 628.0,
+      "avg_gray_depth": 563.0,
+      "avg_gray_size": 626.0
+    },
+    "4": {
+      "avg_classic_depth": 707.08,
+      "avg_classic_size": 1065.08,
+      "avg_gray_depth": 707.08,
+      "avg_gray_size": 1057.08
+    },
+    "5": {
+      "avg_classic_depth": 1996.1,
+      "avg_classic_size": 3207.1,
+      "avg_gray_depth": 1996.1,
+      "avg_gray_size": 3185.1
+    },
+    "6": {
+      "avg_classic_depth": 4876.32,
+      "avg_classic_size": 8326.32,
+      "avg_gray_depth": 4876.32,
+      "avg_gray_size": 8274.32
+    },
+    "7": {
+      "avg_classic_depth": 24323.18,
+      "avg_classic_size": 27662.18,
+      "avg_gray_depth": 24323.18,
+      "avg_gray_size": 27548.18
+    },
+    "8": {
+      "avg_classic_depth": 57349.0,
+      "avg_classic_size": 77317.53,
+      "avg_gray_depth": 57349.0,
+      "avg_gray_size": 77083.53
+    },
+    "9": {
+      "avg_classic_depth": 144389.0,
+      "avg_classic_size": 179198.01,
+      "avg_gray_depth": 144389.0,
+      "avg_gray_size": 178718.01
+    }
+  },
+  "2": {
+    "1": {
+      "avg_classic_depth": 8.67,
+      "avg_classic_size": 12.93,
+      "avg_gray_depth": 8.72,
+      "avg_gray_size": 13.04
+    },
+    "2": {
+      "avg_classic_depth": 90.0,
+      "avg_classic_size": 132.0,
+      "avg_gray_depth": 91.0,
+      "avg_gray_size": 132.0
+    },
+    "3": {
+      "avg_classic_depth": 563.0,
+      "avg_classic_size": 628.0,
+      "avg_gray_depth": 563.0,
+      "avg_gray_size": 626.0
+    },
+    "4": {
+      "avg_classic_depth": 707.08,
+      "avg_classic_size": 1006.08,
+      "avg_gray_depth": 707.08,
+      "avg_gray_size": 992.08
+    },
+    "5": {
+      "avg_classic_depth": 1996.1,
+      "avg_classic_size": 3094.1,
+      "avg_gray_depth": 1996.1,
+      "avg_gray_size": 3058.1
+    },
+    "6": {
+      "avg_classic_depth": 4876.32,
+      "avg_classic_size": 8087.32,
+      "avg_gray_depth": 4876.32,
+      "avg_gray_size": 8021.32
+    },
+    "7": {
+      "avg_classic_depth": 23842.18,
+      "avg_classic_size": 26156.18,
+      "avg_gray_depth": 23827.18,
+      "avg_gray_size": 26027.18
+    },
+    "8": {
+      "avg_classic_depth": 55339.0,
+      "avg_classic_size": 71529.53,
+      "avg_gray_depth": 55321.0,
+      "avg_gray_size": 70992.53
+    },
+    "9": {
+      "avg_classic_depth": 138450.0,
+      "avg_classic_size": 165833.01,
+      "avg_gray_depth": 138349.0,
+      "avg_gray_size": 164615.01
+    }
+  },
+  "3": {
+    "1": {
+      "avg_classic_depth": 8.81,
+      "avg_classic_size": 13.23,
+      "avg_gray_depth": 8.73,
+      "avg_gray_size": 13.0
+    },
+    "2": {
+      "avg_classic_depth": 90.0,
+      "avg_classic_size": 132.0,
+      "avg_gray_depth": 91.0,
+      "avg_gray_size": 132.0
+    },
+    "3": {
+      "avg_classic_depth": 563.0,
+      "avg_classic_size": 628.0,
+      "avg_gray_depth": 563.0,
+      "avg_gray_size": 626.0
+    },
+    "4": {
+      "avg_classic_depth": 707.08,
+      "avg_classic_size": 1006.08,
+      "avg_gray_depth": 707.08,
+      "avg_gray_size": 992.08
+    },
+    "5": {
+      "avg_classic_depth": 1996.1,
+      "avg_classic_size": 3094.1,
+      "avg_gray_depth": 1996.1,
+      "avg_gray_size": 3058.1
+    },
+    "6": {
+      "avg_classic_depth": 4876.32,
+      "avg_classic_size": 8087.32,
+      "avg_gray_depth": 4876.32,
+      "avg_gray_size": 8021.32
+    },
+    "7": {
+      "avg_classic_depth": 23842.18,
+      "avg_classic_size": 26156.18,
+      "avg_gray_depth": 23827.18,
+      "avg_gray_size": 26027.18
+    },
+    "8": {
+      "avg_classic_depth": 55339.0,
+      "avg_classic_size": 71529.53,
+      "avg_gray_depth": 55321.0,
+      "avg_gray_size": 70992.53
+    },
+    "9": {
+      "avg_classic_depth": 138450.0,
+      "avg_classic_size": 165833.01,
+      "avg_gray_depth": 138349.0,
+      "avg_gray_size": 164615.01
+    }
+  }
+}
