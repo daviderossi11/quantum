@@ -194,7 +194,7 @@ def ffqram_metrics_graycode(n, memory_values=None, barrier=True, opt_lvl=2):
 
 
 
-def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2):
+def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2,normalize=True):
     """
     Create a quantum circuit using the FFQRAM (Flip Flop Quantum Random Access Memory) approach
     with Gray code addressing.
@@ -225,12 +225,16 @@ def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2):
     binary_index = list(enumerate(gray_codes[0]))
     
     for i, el in enumerate(memory_values):
-        theta = calculate_theta(el, max_value)
+
         for j, bit in binary_index:
             if bit == '0' and previous_bit[j] == 1:
                 circuit.append(XGate(), [qaddr[j]])
             previous_bit[j] = int(bit)
         
+        if normalize:
+            theta = calculate_theta(el, max_value)
+        else:
+            theta = el 
         CRYGate = RYGate(theta).control(n)
         circuit.append(CRYGate, qaddr[:n] + [qdata[0]])
         
