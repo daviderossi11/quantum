@@ -53,7 +53,7 @@ def calculate_theta(value, max_value):
         float: The calculated theta angle in radians.
     """
     X_N = value / sqrt(max_value)
-    return 2 * arcsin(X_N)
+    return arcsin(X_N)
 
 
 # Funzione per calcolare la profondità e la dimensione del circuito per diverse dimensioni del dataset
@@ -224,17 +224,20 @@ def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2,normalize=True):
     gray_codes = gray_code(n)
     binary_index = list(enumerate(gray_codes[0]))
     
-    for i, el in enumerate(memory_values):
+    for i, _ in enumerate(memory_values):
 
         for j, bit in binary_index:
             if bit == '0' and previous_bit[j] == 1:
                 circuit.append(XGate(), [qaddr[j]])
             previous_bit[j] = int(bit)
         
+        bit_string = gray_codes[i][::-1]
+        index = int(bit_string, 2)
+
         if normalize:
-            theta = calculate_theta(el, max_value)
+            theta = calculate_theta(memory_values[index], max_value)
         else:
-            theta = el 
+            theta = memory_values[index]
         CRYGate = RYGate(theta).control(n)
         circuit.append(CRYGate, qaddr[:n] + [qdata[0]])
         
@@ -257,3 +260,56 @@ def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2,normalize=True):
 
     return optimized_circuit, circuit
     
+
+def create_ffqram_circuit(n,memory_values=None,opt_lvl=2,normalize=True):
+    """
+    Create a quantum circuit using the FFQRAM (Flip Flop Quantum Random Access Memory) approach.
+    Args:
+        n (int): The number of qubits in the address register.
+        memory_values (list, optional): A list of memory values to be encoded. Defaults to None, 
+                                        which will generate a list of values from 1 to N.
+        opt_level (int, optional): The optimization level for the pass manager. Defaults to 2.
+    Returns:
+        QuantumCircuit: The quantum circuit implementing the FFQRAM encoding.
+    """
+    
+    N = 2**n
+    if memory_values is None:
+        memory_values = list(range(1, N + 1))
+    
+    max_value = sum([x**2 for x in memory_values])
+    
+    qaddr = QuantumRegister(n, 'addr')
+    qdata = QuantumRegister(1, 'data')
+    
+    circuit = QuantumCircuit(qaddr, qdata)
+    
+    for qa in qaddr:
+        circuit.append(HGate(), [qa])
+    
+    for i, el in enumerate(memory_values):
+
+        binary_index = bin(i)[2:].zfill(n)[::-1]
+        for j, bit in enumerate(binary_index):
+            if bit == '0':
+                circuit.append(XGate(), [qaddr[j]])
+        
+        if normalize:
+            theta = calculate_theta(el, max_value)
+        else:
+            theta = el 
+        CRYGate = RYGate(theta).control(n)
+        circuit.append(CRYGate, qaddr[:n] + [qdata[0]])
+
+        for j, bit in enumerate(binary_index):
+            if bit == '0':
+                circuit.append(XGate(), [qaddr[j]])
+    
+    pass_manager = preset_passmanagers.generate_preset_pass_manager(
+        optimization_level=opt_lvl,
+        backend=GenericBackendV2(n+1)
+    )
+
+    optimized_circuit = pass_manager.run(circuit)
+
+    return optimized_circuit, circuit
