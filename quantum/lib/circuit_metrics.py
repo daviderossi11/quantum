@@ -53,7 +53,7 @@ def calculate_theta(value, max_value):
         float: The calculated theta angle in radians.
     """
     X_N = value / sqrt(max_value)
-    return arcsin(X_N)
+    return 2*arcsin(X_N)
 
 
 # Funzione per calcolare la profondità e la dimensione del circuito per diverse dimensioni del dataset
