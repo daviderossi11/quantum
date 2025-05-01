@@ -4,6 +4,7 @@ from qiskit.transpiler import preset_passmanagers
 from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit.circuit.library import HGate, RYGate, XGate
 from numpy import arcsin, sqrt
+from pprint import pprint
 
 
 # Funzione per calcolare il gray code
@@ -190,11 +191,12 @@ def ffqram_metrics_graycode(n, memory_values=None, barrier=True, opt_lvl=2):
 
     optimized_circuit = pass_manager.run(circuit)
 
+
     return circuit.depth(), optimized_circuit.depth(), circuit.size(), optimized_circuit.size(), circuit.count_ops(), optimized_circuit.count_ops()
 
 
 
-def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2,normalize=True):
+def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2,normalize=True, Trnspile=True):
     """
     Create a quantum circuit using the FFQRAM (Flip Flop Quantum Random Access Memory) approach
     with Gray code addressing.
@@ -251,17 +253,23 @@ def create_ffqram_gc_circuit(n,memory_values=None,opt_lvl=2,normalize=True):
                 if bit == '0':
                     circuit.append(XGate(), [qaddr[j]])
 
-    pass_manager = preset_passmanagers.generate_preset_pass_manager(
-        optimization_level=opt_lvl,
-        backend=GenericBackendV2(n+1)
-    )
+    optimized_circuit = circuit.copy()
+    
+    if Trnspile:
+        pass_manager = preset_passmanagers.generate_preset_pass_manager(
+            optimization_level=opt_lvl,
+            backend=GenericBackendV2(n+1),
+            layout_method="trivial"
+        )
 
-    optimized_circuit = pass_manager.run(circuit)
+
+        optimized_circuit = pass_manager.run(circuit)
+
 
     return optimized_circuit, circuit
     
 
-def create_ffqram_circuit(n,memory_values=None,opt_lvl=2,normalize=True):
+def create_ffqram_circuit(n,memory_values=None,opt_lvl=2,normalize=True, Trnspile=True):
     """
     Create a quantum circuit using the FFQRAM (Flip Flop Quantum Random Access Memory) approach.
     Args:
@@ -305,11 +313,15 @@ def create_ffqram_circuit(n,memory_values=None,opt_lvl=2,normalize=True):
             if bit == '0':
                 circuit.append(XGate(), [qaddr[j]])
     
-    pass_manager = preset_passmanagers.generate_preset_pass_manager(
-        optimization_level=opt_lvl,
-        backend=GenericBackendV2(n+1)
-    )
+    optimized_circuit = circuit.copy()
+    if Trnspile:
+        pass_manager = preset_passmanagers.generate_preset_pass_manager(
+            optimization_level=opt_lvl,
+            backend=GenericBackendV2(n+1),
+            layout_method="trivial"
+        )
 
-    optimized_circuit = pass_manager.run(circuit)
+        optimized_circuit = pass_manager.run(circuit)
+
 
     return optimized_circuit, circuit
