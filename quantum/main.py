@@ -1,60 +1,62 @@
 import numpy as np
 import csv
+import os
 from qiskit.quantum_info import Statevector, state_fidelity
 from lib.circuit_metrics import create_ffqram_gc_circuit, create_ffqram_circuit
 
 def run_ffqram_multiple_seeds_to_csv():
     output_filename = "ffqram_fidelity_sv.csv"
-    optlvl = 3
+    file_exists = os.path.isfile(output_filename)
+    is_empty = not file_exists or os.path.getsize(output_filename) == 0
 
-    with open(output_filename, mode='w', newline='') as file:
+    with open(output_filename, mode='a', newline='') as file:
         writer = csv.writer(file)
-        # Header del CSV
-        writer.writerow([
-            "run_id",
-            "seed",
-            "qubit_address",
-            "normalized_input_array",
-            "fidelity_gray_vs_classic"
-        ])
+        
+        # Scrivi l'header solo se il file è nuovo o vuoto
+        if is_empty:
+            writer.writerow([
+                "run_id",
+                "seed",
+                "qubit_address",
+                "fidelity_gray_vs_classic",
+                "optimization_level"
+            ])
 
-        for run_id, seed in enumerate(range(10)):  # 10 run con seed da 0 a 9
-            print(f"\n===== RUN {run_id + 1} (seed = {seed}) =====")
 
-            for el in range(2, 11):  # Qubit da 2 a 10
-                print(f"\n--- Qubit address: {el} ---")
 
-                # Imposta il seed per questa combinazione run/qubit
-                np.random.seed(seed)
+        for run_offset in range(10,20):  # 10 nuovi run
+            run_id = 1 + run_offset
+            seed = run_id -1
+            print(f"\n===== RUN {run_id} (seed = {seed}) =====")
+            np.random.seed(seed)
 
-                # Genera array normalizzato
-                random_array = np.random.rand(2 ** el)
-                normalized_array = random_array / np.linalg.norm(random_array)
-                print("Array normalizzato:")
-                print(normalized_array)
+            for optlvl in range(4):  # Ottimizzazione 0–3
+                print(f"Optimization level: {optlvl}")
 
-                # FF-QRAM con Gray Code
-                circuit_gray, _ = create_ffqram_gc_circuit(el, random_array, optlvl, True)
-                sv_gray = Statevector.from_instruction(circuit_gray)
+                for el in range(2, 11):  # Qubit 2–10
+                    print(f"\n--- Qubit address: {el} ---")
 
-                # FF-QRAM classico
-                circuit_classic, _ = create_ffqram_circuit(el, random_array, optlvl, True)
-                sv_classic = Statevector.from_instruction(circuit_classic)
+                    random_array = np.random.rand(2 ** el)
+                    normalized_array = random_array / np.linalg.norm(random_array)
 
-                # Calcola fidelity tra statevector
-                fidelity = state_fidelity(sv_gray, sv_classic)
-                print(f"Fidelity Classic vs Graycode (statevector): {fidelity:.6f}")
+                    circuit_gray, _ = create_ffqram_gc_circuit(el, random_array, optlvl, True)
+                    sv_gray = Statevector.from_instruction(circuit_gray)
 
-                # Scrive nel CSV
-                writer.writerow([
-                    run_id + 1,
-                    seed,
-                    el,
-                    list(normalized_array),
-                    fidelity
-                ])
+                    circuit_classic, _ = create_ffqram_circuit(el, random_array, optlvl, True)
+                    sv_classic = Statevector.from_instruction(circuit_classic)
 
-    print(f"\nTutti i risultati sono stati salvati in '{output_filename}'")
+                    fidelity = state_fidelity(sv_gray, sv_classic)
+                    print(f"Fidelity Classic vs Graycode (statevector): {fidelity:.6f}")
+
+                    writer.writerow([
+                        run_id,
+                        seed,
+                        el,
+                        fidelity,
+                        optlvl
+                    ])
+
+    print(f"\nI nuovi risultati sono stati aggiunti a '{output_filename}'")
 
 if __name__ == "__main__":
     run_ffqram_multiple_seeds_to_csv()
