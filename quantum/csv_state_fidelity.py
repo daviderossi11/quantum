@@ -8,6 +8,9 @@ import numpy as np
 from qiskit.providers.fake_provider import *
 import csv
 
+
+
+# Da runnare con Qiskit 1.4.2
 def run_backend(circuit, model_instance, method='density_matrix', optimization_level=0):
     """
     Run a quantum circuit on a backend.
@@ -120,7 +123,7 @@ def run_ffqram(run_id, seed):
 
 if __name__ == "__main__":
     # Esegui la funzione run_ffqram con un ID di esecuzione e un seme specifici
-    for i in range(21, 26):
+    for i in range(31,36):
         run_ffqram(i, i)
 
 

@@ -5,7 +5,7 @@ from qiskit.quantum_info import Statevector, state_fidelity
 from lib.circuit_metrics import create_ffqram_gc_circuit, create_ffqram_circuit
 
 def run_ffqram_multiple_seeds_to_csv():
-    output_filename = "ffqram_fidelity_sv.csv"
+    output_filename = "data/ffqram_fidelity_sv.csv"
     file_exists = os.path.isfile(output_filename)
     is_empty = not file_exists or os.path.getsize(output_filename) == 0
 
@@ -24,7 +24,7 @@ def run_ffqram_multiple_seeds_to_csv():
 
 
 
-        for run_offset in range(10,20):  # 10 nuovi run
+        for run_offset in range(30,40):  # 10 nuovi run
             run_id = 1 + run_offset
             seed = run_id -1
             print(f"\n===== RUN {run_id} (seed = {seed}) =====")
