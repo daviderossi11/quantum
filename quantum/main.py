@@ -1,62 +1,38 @@
+import json
+import matplotlib.pyplot as plt
 import numpy as np
-import csv
-import os
-from qiskit.quantum_info import Statevector, state_fidelity
-from lib.circuit_metrics import create_ffqram_gc_circuit, create_ffqram_circuit
+from collections import defaultdict
 
-def run_ffqram_multiple_seeds_to_csv():
-    output_filename = "data/ffqram_fidelity_sv.csv"
-    file_exists = os.path.isfile(output_filename)
-    is_empty = not file_exists or os.path.getsize(output_filename) == 0
+# === 1. Caricamento dei dati ===
+with open("data/metrics_results.json", "r") as f:
+    metrics_data = json.load(f)
 
-    with open(output_filename, mode='a', newline='') as file:
-        writer = csv.writer(file)
-        
-        # Scrivi l'header solo se il file è nuovo o vuoto
-        if is_empty:
-            writer.writerow([
-                "run_id",
-                "seed",
-                "qubit_address",
-                "fidelity_gray_vs_classic",
-                "optimization_level"
-            ])
+# === 2. Inizializzazione struttura ===
+raw_data = defaultdict(lambda: defaultdict(lambda: {
+    "classic_size": [],
+    "gray_size": [],
+    "classic_depth": [],
+    "gray_depth": []
+}))
+
+# === 3. Popolamento delle liste raw ===
+for entry in metrics_data:
+    opt_level = entry["optimization_level"]
+    n_qubits = entry["n"]
+    raw_data[opt_level][n_qubits]["classic_size"].append(entry["classic"]["optimized_size"])
+    raw_data[opt_level][n_qubits]["gray_size"].append(entry["graycode"]["optimized_size"])
+    raw_data[opt_level][n_qubits]["classic_depth"].append(entry["classic"]["optimized_depth"])
+    raw_data[opt_level][n_qubits]["gray_depth"].append(entry["graycode"]["optimized_depth"])
 
 
 
-        for run_offset in range(30,40):  # 10 nuovi run
-            run_id = 1 + run_offset
-            seed = run_id -1
-            print(f"\n===== RUN {run_id} (seed = {seed}) =====")
-            np.random.seed(seed)
-
-            for optlvl in range(4):  # Ottimizzazione 0–3
-                print(f"Optimization level: {optlvl}")
-
-                for el in range(2, 11):  # Qubit 2–10
-                    print(f"\n--- Qubit address: {el} ---")
-
-                    random_array = np.random.rand(2 ** el)
-                    normalized_array = random_array / np.linalg.norm(random_array)
-
-                    circuit_gray, _ = create_ffqram_gc_circuit(el, random_array, optlvl, True)
-                    sv_gray = Statevector.from_instruction(circuit_gray)
-
-                    circuit_classic, _ = create_ffqram_circuit(el, random_array, optlvl, True)
-                    sv_classic = Statevector.from_instruction(circuit_classic)
-
-                    fidelity = state_fidelity(sv_gray, sv_classic)
-                    print(f"Fidelity Classic vs Graycode (statevector): {fidelity:.6f}")
-
-                    writer.writerow([
-                        run_id,
-                        seed,
-                        el,
-                        fidelity,
-                        optlvl
-                    ])
-
-    print(f"\nI nuovi risultati sono stati aggiunti a '{output_filename}'")
-
-if __name__ == "__main__":
-    run_ffqram_multiple_seeds_to_csv()
+print("\n===== DATI RACCOLTI IN raw_data =====")
+for opt_level in sorted(raw_data.keys()):
+    print(f"\n--- Livello di ottimizzazione {opt_level} ---")
+    for n_qubits in sorted(raw_data[opt_level].keys()):
+        entry = raw_data[opt_level][n_qubits]
+        print(f"\nNumero di qubit di indirizzo: {n_qubits}")
+        print(f"  classic_size:  {entry['classic_size']}")
+        print(f"  gray_size:     {entry['gray_size']}")
+        print(f"  classic_depth: {entry['classic_depth']}")
+        print(f"  gray_depth:    {entry['gray_depth']}")

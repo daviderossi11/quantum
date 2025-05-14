@@ -17,6 +17,7 @@ def run_comparation(run_id, seed):
         is_empty = not file_exists or os.path.getsize("data/state_preparation_metrics.csv") == 0
         if is_empty:
             writer.writerow([
+                "run_id",
                 "N_address_qubits",
                 "seed",
                 "optimized_circuit_size",
@@ -43,7 +44,7 @@ def run_comparation(run_id, seed):
 
             backend = GenericBackendV2(n)
 
-            pass_manager = preset_passmanagers.get_pass_manager(
+            pass_manager = preset_passmanagers.generate_preset_pass_manager(
                 optimization_level=3,
                 layout_method="trivial",
                 backend=backend
@@ -52,6 +53,7 @@ def run_comparation(run_id, seed):
             init_circuit = pass_manager.run(init_circuit)
 
             writer.writerow([
+                run_id,
                 n,
                 seed,
                 circuit_standard_ffqram.size(),
@@ -64,7 +66,7 @@ def run_comparation(run_id, seed):
     print(f"\nI nuovi risultati sono stati aggiunti a 'data/state_preparation_metrics.csv'")
 
 if __name__ == "__main__":
-    for run_offset in range(1, 1):  # 10 nuovi run
+    for run_offset in range(1, 51):  # 10 nuovi run
         run_id = 1 + run_offset
         seed = run_id - 1
         print(f"\n===== RUN {run_id} (seed = {seed}) =====")
