@@ -26,7 +26,8 @@ def run_backend(circuit, model_instance, method='density_matrix', optimization_l
     noise_model = NoiseModel.from_backend(model_instance)
     coupling_map = model_instance.configuration().coupling_map
     basis_gates = noise_model.basis_gates
-
+    print(basis_gates)
+    exit()
     backend = AerSimulator(method=method, noise_model=noise_model,
                            coupling_map=coupling_map, basis_gates=basis_gates)
 
